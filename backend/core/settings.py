@@ -29,7 +29,7 @@ CORE_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
-MY_APPS = ['apps.auth.apps.AuthConfig',
+MY_APPS = ['apps.authenticate.apps.AuthenticateConfig',
            ]
 THIRD_PARTY_APPS = ['rest_framework',
                     'corsheaders',
@@ -39,7 +39,7 @@ THIRD_PARTY_APPS = ['rest_framework',
 INSTALLED_APPS = CORE_APPS + MY_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
-    'django_hosts.middleware.HostsMiddleware',
+    'django_hosts.middleware.HostsBaseMiddleware'
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -47,6 +47,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsRequestMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
@@ -129,5 +130,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
-AUTH_USER_MODEL = 'auth.User'
+AUTH_USER_MODEL = 'authenticate.Person'
 
